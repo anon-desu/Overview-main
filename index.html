@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>k的个人主页</title>
+    <link rel="icon" href="https://band.19216891.xyz/favicon.jpg">
+    
+    <style>
+        :root {
+            --bg-color: #F2F4F6;
+            --card-bg: #FFFFFF;
+            --text-main: #1F2937;
+            --text-sub: #6B7280;
+            --accent-pink: #E76C8E;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            background-image: radial-gradient(circle at 50% -20%, rgba(231, 108, 142, 0.15), transparent 60%);
+            background-attachment: fixed;
+        }
+
+        .container { width: 100%; max-width: 600px; display: flex; flex-direction: column; gap: 24px; }
+
+        header { text-align: center; margin-bottom: 10px; }
+        .header-title-row { display: flex; justify-content: center; align-items: center; gap: 8px; }
+        .header-text h1 { font-size: 1.8rem; font-weight: 800; }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.75rem;
+            background: #E6FFFA;
+            color: #059669;
+            padding: 4px 10px;
+            border-radius: 99px;
+            font-weight: 600;
+        }
+        .status-dot-h { width: 6px; height: 6px; background: #10B981; border-radius: 50%; margin-right: 6px; }
+
+        .social-bar { display: flex; justify-content: center; gap: 16px; margin-top: 20px; }
+        .social-btn {
+            width: 44px; height: 44px; background: #fff; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; color: var(--text-sub); box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
+        }
+        .social-btn svg { width: 20px; height: 20px; fill: currentColor; }
+        .social-btn:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .btn-x:hover { color: #000000; }
+        .btn-yt:hover { color: #FF0000; }
+        .btn-mail:hover { color: var(--accent-pink); }
+
+        .grid { display: flex; flex-direction: column; gap: 16px; }
+        .card {
+            background: var(--card-bg); border-radius: 24px; padding: 24px;
+            text-decoration: none; color: var(--text-main);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative; box-shadow: var(--shadow-sm);
+            text-align: left; /* 强制所有卡片内容左对齐 */
+        }
+        .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+
+        .main-card { background: linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 100%); }
+        .main-card-icon { 
+            font-size: 2.2rem; margin-bottom: 12px; background: #FFF0F5; 
+            width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 16px;
+        }
+        .main-card-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 6px; }
+        .main-card-desc { color: var(--text-sub); font-size: 0.95rem; line-height: 1.5; }
+
+        /* 副卡片网格布局 */
+        .sub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .sub-card { display: flex; flex-direction: column; justify-content: flex-start; min-height: 140px; }
+        .sub-icon {
+            width: 44px; height: 44px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+        .card-zu .sub-icon { background: #FEF9C3; color: #B45309; }
+        .card-miaosi .sub-icon { background: #FCE7F3; color: #BE185D; }
+        .card-78 .sub-icon { background: #DBEAFE; color: #1E40AF; }
+        
+        .sub-title { font-size: 1.1rem; font-weight: 700; }
+        .sub-desc { font-size: 0.85rem; color: var(--text-sub); margin-top: 4px; }
+        
+        footer { margin-top: 30px; text-align: center; font-size: 0.8rem; color: #9CA3AF; }
+
+        @media (max-width: 600px) {
+            .sub-grid { grid-template-columns: 1fr; }
+            .sub-card { flex-direction: row; align-items: center; min-height: auto; padding: 20px; }
+            .sub-icon { margin-right: 16px; margin-bottom: 0; }
+            .sub-content { text-align: left; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="header-text">
+                <div class="header-title-row">
+                    <h1>k的个人主页</h1>
+                    <div class="status-badge"><div class="status-dot-h"></div>在线</div>
+                </div>
+                <div class="social-bar">
+                    <a href="https://x.com/anonchan0721" target="_blank" class="social-btn btn-x"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="https://www.youtube.com/@k-onsaiko" target="_blank" class="social-btn btn-yt"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+                    <a href="mailto:support@19216891.xyz" class="social-btn btn-mail"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+                </div>
+            </div>
+        </header>
+
+        <nav class="grid">
+            <a href="https://band.19216891.xyz" target="_blank" class="card main-card">
+                <div class="main-card-icon">🎸</div>
+                <h2 class="main-card-title">Kessoku Band Music</h2>
+                <p class="main-card-desc">孤独摇滚粉丝同人音乐站。收录全曲目，支持在线播放。</p>
+            </a>
+            
+            <div class="sub-grid">
+                <a href="https://zu.19216891.xyz" target="_blank" class="card sub-card card-zu">
+                    <div class="sub-icon">⚡</div>
+                    <div class="sub-content">
+                        <h3 class="sub-title">Project Zu</h3>
+                        <p class="sub-desc">关于阿祖同学</p>
+                    </div>
+                </a>
+
+                <a href="https://miaosi.19216891.xyz" target="_blank" class="card sub-card card-miaosi">
+                    <div class="sub-icon">🎨</div>
+                    <div class="sub-content">
+                        <h3 class="sub-title">Miaosi</h3>
+                        <p class="sub-desc">喵斯快跑主题相关</p>
+                    </div>
+                </a>
+
+                <a href="https://kon-daisuki.github.io/78changdu.github.io" target="_blank" class="card sub-card card-78">
+                    <div class="sub-icon">🌌</div>
+                    <div class="sub-content">
+                        <h3 class="sub-title">Site 78</h3>
+                        <p class="sub-desc">实验区域</p>
+                    </div>
+                </a>
+            </div>
+        </nav>
+
+        <footer>
+            <p>&copy; 2026 k的个人主页. All rights reserved</p>
+        </footer>
+    </div>
+
+</body>
+</html>
