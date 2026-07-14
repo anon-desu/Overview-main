@@ -147,9 +147,21 @@
         </nav>
 
         <footer>
-            <p>&copy; 2026 k的个人主页. All rights reserved</p>
+            <p>&copy; <span id="copyright-year">2025</span> k的个人主页. All rights reserved</p>
         </footer>
     </div>
 
+    <script>
+        // 自动将结束年份更新为当前年份
+        const startYear = 2025;
+        const currentYear = new Date().getFullYear();
+        const yearElement = document.getElementById('copyright-year');
+        if (currentYear > startYear) {
+            yearElement.textContent = `${startYear}-${currentYear}`;
+        } else {
+            yearElement.textContent = startYear;
+        }
+    </script>
 </body>
 </html>
+
