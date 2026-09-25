@@ -48,7 +48,6 @@
         }
         .status-dot-h { width: 6px; height: 6px; background: #10B981; border-radius: 50%; margin-right: 6px; }
 
-        /* 动态域名提示胶囊 */
         .domain-notice {
             display: inline-flex;
             align-items: center;
@@ -142,9 +141,8 @@
                     <div class="status-badge"><div class="status-dot-h"></div>在线</div>
                 </div>
 
-                <!-- 动态域名指示条 -->
                 <div id="domain-notice" class="domain-notice">
-                    <span id="notice-content">正在检测网络节点...</span>
+                    <span id="notice-content">正在联络节点网络...</span>
                 </div>
 
                 <div class="social-bar">
@@ -187,25 +185,20 @@
     </div>
 
     <script>
-        // 1. 动态判断访问域名并渲染对应提示
         (function() {
             const host = window.location.hostname;
             const noticeEl = document.getElementById('notice-content');
             
-            // 采用字符串拼接防止 Worker 反代时被全局替换
             const mainHost = 'www.' + '19216891' + '.xyz';
             const mirrorHost = 'www.bocchi.us.kg';
 
             if (host.includes('bocchi.us.kg')) {
-                // 当前是 bocchi 镜像站
-                noticeEl.innerHTML = `这是镜像站，主网站为：<a href="https://${mainHost}" target="_blank">${mainHost}</a>`;
+                noticeEl.innerHTML = `当前为大陆直连节点 · 全球主站枢纽：<a href="https://${mainHost}" target="_blank">${mainHost}</a>`;
             } else {
-                // 当前是 xyz 主站
-                noticeEl.innerHTML = `您访问的是主网站，中国区可用：<a href="https://${mirrorHost}" target="_blank">${mirrorHost}</a>`;
+                noticeEl.innerHTML = `当前为海外主节点 · 大陆网络推荐直连：<a href="https://${mirrorHost}" target="_blank">${mirrorHost}</a>`;
             }
         })();
 
-        // 2. 自动更新页脚年份
         const startYear = 2025;
         const currentYear = new Date().getFullYear();
         const yearElement = document.getElementById('copyright-year');
@@ -217,4 +210,3 @@
     </script>
 </body>
 </html>
-```[span_1](start_span)[span_1](end_span)
